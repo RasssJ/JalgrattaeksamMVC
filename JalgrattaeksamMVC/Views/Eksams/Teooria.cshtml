@@ -1,0 +1,56 @@
+﻿@model IEnumerable<JalgrattaeksamMVC.Models.Eksam>
+
+@{
+    ViewData["Title"] = "Teooria";
+}
+
+<h1>Teooria</h1>
+
+<p>
+    <a asp-action="Registreeri">Registreeri</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Eesnimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perenimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teooria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Eesnimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perenimi)
+            </td>
+            <td>
+                <form asp-action="TeooriaTulemus">
+                    <input type="hidden" value="@item.Id" name="@nameof(item.Id)" />
+                    <div class="d-flex">
+                        <div class="form-group">
+                            <input type="number" value="@item.Teooria" class="form-control" name="@nameof(item.Teooria)" min="-1" max="10" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Salvesta" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </form>
+
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

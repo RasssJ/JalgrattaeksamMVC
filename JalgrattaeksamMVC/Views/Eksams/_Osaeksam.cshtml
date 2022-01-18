@@ -1,0 +1,38 @@
+﻿@model IEnumerable<JalgrattaeksamMVC.Models.Eksam>
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Eesnimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perenimi)
+            </th>
+            <th>
+                @ViewData["Title"]
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Eesnimi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Perenimi)
+                </td>
+                <td>
+
+                    <a asp-action="PassFail" asp-route-id="@item.Id" asp-route-osa='@ViewData["Osa"]' asp-route-tulemus="1">Õnnestus</a> |
+
+                    <a asp-action="PassFail" asp-route-id="@item.Id" asp-route-osa='@ViewData["Osa"]' asp-route-tulemus="2">Ebaõnnestus</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
